@@ -1,0 +1,113 @@
+{
+    "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
+    "actorSpecification": 1,
+    "title": "Twitter (X) data",
+    "fields": {
+        "type": "object",
+        "properties": {
+            "type": { "type": "string", "enum": ["tweet", "user", "trend"], "description": "Kind of item." },
+            "id": { "type": "string", "description": "Tweet ID or user ID (rest_id)." },
+            "input": { "type": "string", "description": "The query, user, tweet, list, community or location this item came from." },
+            "mode": { "type": "string", "description": "Mode of the run." }
+        },
+        "required": ["type", "input", "mode"]
+    },
+    "views": {
+        "tweets": {
+            "title": "Tweets",
+            "description": "Tweets from search, user timelines, replies, lists and communities.",
+            "transformation": {
+                "fields": [
+                    "url",
+                    "text",
+                    "created_at",
+                    "author.username",
+                    "author.followers",
+                    "metrics.likes",
+                    "metrics.retweets",
+                    "metrics.replies",
+                    "metrics.quotes",
+                    "metrics.views",
+                    "lang",
+                    "is_reply",
+                    "is_quote",
+                    "is_retweet",
+                    "input"
+                ],
+                "flatten": ["author", "metrics"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": { "label": "Tweet", "format": "link" },
+                    "text": { "label": "Text", "format": "text" },
+                    "created_at": { "label": "Posted", "format": "date" },
+                    "author.username": { "label": "Author", "format": "text" },
+                    "author.followers": { "label": "Author followers", "format": "number" },
+                    "metrics.likes": { "label": "Likes", "format": "number" },
+                    "metrics.retweets": { "label": "Retweets", "format": "number" },
+                    "metrics.replies": { "label": "Replies", "format": "number" },
+                    "metrics.quotes": { "label": "Quotes", "format": "number" },
+                    "metrics.views": { "label": "Views", "format": "number" },
+                    "lang": { "label": "Language", "format": "text" },
+                    "is_reply": { "label": "Reply", "format": "boolean" },
+                    "is_quote": { "label": "Quote", "format": "boolean" },
+                    "is_retweet": { "label": "Retweet", "format": "boolean" },
+                    "input": { "label": "Input", "format": "text" }
+                }
+            }
+        },
+        "users": {
+            "title": "Users",
+            "description": "Profiles, followers, following, retweeters and People search.",
+            "transformation": {
+                "fields": [
+                    "profile_image",
+                    "url",
+                    "name",
+                    "bio",
+                    "location",
+                    "followers",
+                    "following",
+                    "tweets",
+                    "verified",
+                    "created_at",
+                    "input"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "profile_image": { "label": "Avatar", "format": "image" },
+                    "url": { "label": "Profile", "format": "link" },
+                    "name": { "label": "Name", "format": "text" },
+                    "bio": { "label": "Bio", "format": "text" },
+                    "location": { "label": "Location", "format": "text" },
+                    "followers": { "label": "Followers", "format": "number" },
+                    "following": { "label": "Following", "format": "number" },
+                    "tweets": { "label": "Tweets", "format": "number" },
+                    "verified": { "label": "Verified", "format": "boolean" },
+                    "created_at": { "label": "Joined", "format": "date" },
+                    "input": { "label": "Input", "format": "text" }
+                }
+            }
+        },
+        "trends": {
+            "title": "Trends",
+            "transformation": {
+                "fields": ["rank", "name", "tweet_volume", "context", "url", "input"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "rank": { "label": "Rank", "format": "number" },
+                    "name": { "label": "Trend", "format": "text" },
+                    "tweet_volume": { "label": "Tweets", "format": "number" },
+                    "context": { "label": "Context", "format": "text" },
+                    "url": { "label": "Search", "format": "link" },
+                    "input": { "label": "WOEID", "format": "text" }
+                }
+            }
+        }
+    }
+}

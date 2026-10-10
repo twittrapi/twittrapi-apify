@@ -1,0 +1,103 @@
+{
+  "data": {
+    "search_by_raw_query": {
+      "search_timeline": {
+        "timeline": {
+          "instructions": [
+            {
+              "type": "TimelineAddEntries",
+              "entries": [
+                {
+                  "entryId": "tweet-1844000000000000001",
+                  "content": {
+                    "entryType": "TimelineTimelineItem",
+                    "itemContent": {
+                      "itemType": "TimelineTweet",
+                      "tweet_results": {
+                        "result": {
+                          "__typename": "Tweet",
+                          "rest_id": "1844000000000000001",
+                          "legacy": { "full_text": "duplicate of a page 1 tweet, must be dropped", "created_at": "Wed Oct 09 14:03:11 +0000 2024" }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "entryId": "tweet-1843990000000000005",
+                  "content": {
+                    "entryType": "TimelineTimelineItem",
+                    "itemContent": {
+                      "itemType": "TimelineTweet",
+                      "tweet_results": {
+                        "result": {
+                          "__typename": "Tweet",
+                          "rest_id": "1843990000000000005",
+                          "core": {
+                            "user_results": {
+                              "result": {
+                                "__typename": "User",
+                                "rest_id": "12345",
+                                "is_blue_verified": true,
+                                "core": { "name": "Ada Example", "screen_name": "ada_example", "created_at": "Tue Mar 21 20:50:14 +0000 2006" },
+                                "legacy": { "followers_count": 52000 }
+                              }
+                            }
+                          },
+                          "views": { "count": "800", "state": "EnabledWithCount" },
+                          "legacy": {
+                            "created_at": "Wed Oct 09 10:00:00 +0000 2024",
+                            "conversation_id_str": "1843990000000000005",
+                            "full_text": "RT @dbnews: Postgres 17 released today",
+                            "lang": "en",
+                            "favorite_count": 0,
+                            "retweet_count": 12,
+                            "reply_count": 0,
+                            "quote_count": 0,
+                            "bookmark_count": 0,
+                            "is_quote_status": false,
+                            "retweeted_status_result": {
+                              "result": {
+                                "__typename": "Tweet",
+                                "rest_id": "1843980000000000000",
+                                "core": { "user_results": { "result": { "__typename": "User", "rest_id": "999", "core": { "screen_name": "dbnews", "name": "DB News" }, "legacy": { "followers_count": 100000 } } } },
+                                "views": { "count": "90000" },
+                                "legacy": {
+                                  "created_at": "Wed Oct 09 08:00:00 +0000 2024",
+                                  "conversation_id_str": "1843980000000000000",
+                                  "full_text": "Postgres 17 released today",
+                                  "lang": "en",
+                                  "favorite_count": 900,
+                                  "retweet_count": 12,
+                                  "reply_count": 40,
+                                  "quote_count": 3,
+                                  "bookmark_count": 100
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "entryId": "cursor-top-1843990000000000010",
+                  "content": { "entryType": "TimelineTimelineCursor", "value": "TOP_2", "cursorType": "Top" }
+                }
+              ]
+            },
+            {
+              "type": "TimelineReplaceEntry",
+              "entry_id_to_replace": "cursor-bottom-1844000000000000000",
+              "entry": {
+                "entryId": "cursor-bottom-1843990000000000000",
+                "content": { "entryType": "TimelineTimelineCursor", "value": "SEARCH_PAGE_3", "cursorType": "Bottom" }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "data": {
+    "user": {
+      "result": {
+        "__typename": "User",
+        "id": "VXNlcjoxMjM0NQ==",
+        "rest_id": "12345",
+        "is_blue_verified": true,
+        "core": { "created_at": "Tue Mar 21 20:50:14 +0000 2006", "name": "Ada Example", "screen_name": "ada_example" },
+        "avatar": { "image_url": "https://pbs.twimg.com/profile_images/1/ada_normal.jpg" },
+        "location": { "location": "London" },
+        "privacy": { "protected": false },
+        "verification": { "verified": false },
+        "legacy": {
+          "description": "Writes about databases.",
+          "entities": { "description": { "urls": [] }, "url": { "urls": [ { "display_url": "ada.example", "expanded_url": "https://ada.example", "url": "https://t.co/ada" } ] } },
+          "favourites_count": 1200,
+          "followers_count": 52000,
+          "friends_count": 310,
+          "media_count": 40,
+          "statuses_count": 8800,
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/12345/1",
+          "url": "https://t.co/ada"
+        }
+      }
+    }
+  }
+}

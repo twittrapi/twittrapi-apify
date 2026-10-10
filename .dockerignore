@@ -1,0 +1,11 @@
+.git
+.idea
+.vscode
+node_modules
+dist
+build-test
+storage
+apify_storage
+crawlee_storage
+.env
+*.log

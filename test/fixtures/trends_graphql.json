@@ -1,0 +1,25 @@
+{
+  "data": {
+    "timeline": {
+      "timeline": {
+        "instructions": [
+          {
+            "type": "TimelineAddEntries",
+            "entries": [
+              {
+                "entryId": "trends-1",
+                "content": {
+                  "entryType": "TimelineTimelineModule",
+                  "items": [
+                    { "entryId": "trends-1-trend-0", "item": { "itemContent": { "itemType": "TimelineTrend", "__typename": "TimelineTrend", "name": "Champions League", "rank": "1", "trend_url": { "url": "twitter://search/?query=%22Champions+League%22&src=trend_click&vertical=trends" }, "trend_metadata": { "domain_context": "Sports · Trending", "meta_description": "52.1K posts" } } } },
+                    { "entryId": "trends-1-trend-1", "item": { "itemContent": { "itemType": "TimelineTrend", "name": "Rust", "trend_metadata": { "domain_context": "Technology · Trending" } } } }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

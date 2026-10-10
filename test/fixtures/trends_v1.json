@@ -1,0 +1,12 @@
+[
+  {
+    "trends": [
+      { "name": "#Postgres17", "url": "http://twitter.com/search?q=%23Postgres17", "promoted_content": null, "query": "%23Postgres17", "tweet_volume": 15400 },
+      { "name": "Ada Lovelace Day", "url": "http://twitter.com/search?q=%22Ada+Lovelace+Day%22", "promoted_content": null, "query": "%22Ada+Lovelace+Day%22", "tweet_volume": null },
+      { "url": "http://twitter.com/search?q=nameless" }
+    ],
+    "as_of": "2024-10-10T12:00:00Z",
+    "created_at": "2024-10-10T11:55:00Z",
+    "locations": [ { "name": "Worldwide", "woeid": 1 } ]
+  }
+]

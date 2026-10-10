@@ -1,0 +1,19 @@
+{
+  "data": {
+    "list": {
+      "tweets_timeline": {
+        "timeline": {
+          "instructions": [
+            {
+              "type": "TimelineAddEntries",
+              "entries": [
+                { "entryId": "tweet-1844200000000000001", "content": { "entryType": "TimelineTimelineItem", "itemContent": { "itemType": "TimelineTweet", "tweet_results": { "result": { "__typename": "Tweet", "rest_id": "1844200000000000001", "core": { "user_results": { "result": { "__typename": "User", "rest_id": "999", "core": { "screen_name": "dbnews", "name": "DB News" }, "legacy": { "followers_count": 100000 } } } }, "legacy": { "created_at": "Thu Oct 10 09:00:00 +0000 2024", "conversation_id_str": "1844200000000000001", "full_text": "List timeline tweet", "lang": "en", "favorite_count": 1, "retweet_count": 0, "reply_count": 0, "quote_count": 0 } } } } } },
+                { "entryId": "cursor-bottom-0", "content": { "entryType": "TimelineTimelineCursor", "value": "LIST_PAGE_2", "cursorType": "Bottom" } }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

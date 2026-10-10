@@ -1,0 +1,133 @@
+{
+    "$schema": "https://apify.com/schemas/v1/input.ide.json",
+    "title": "Twitter (X) data input",
+    "description": "Pick what to collect in <b>Mode</b>, then fill in the matching field below (search queries, usernames, tweet IDs, list IDs, community IDs or locations). Each query, user, tweet, list, community or location is collected up to <b>Max items per input</b>.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "mode": {
+            "title": "Mode",
+            "type": "string",
+            "description": "What to collect. Each mode reads one of the fields below:<br><b>Search tweets</b>: Search queries.<br><b>User tweets</b>, <b>User profiles</b>, <b>Followers</b>, <b>Following</b>: Usernames or User IDs.<br><b>Tweet replies</b>, <b>Tweet retweeters</b>: Tweet IDs or URLs.<br><b>List tweets</b>: List IDs. <b>Community tweets</b>: Community IDs. <b>Trends</b>: Locations (WOEIDs).",
+            "editor": "select",
+            "enum": [
+                "searchTweets",
+                "userTweets",
+                "userProfiles",
+                "followers",
+                "following",
+                "tweetReplies",
+                "tweetRetweeters",
+                "listTweets",
+                "communityTweets",
+                "trends"
+            ],
+            "enumTitles": [
+                "Search tweets",
+                "User tweets (profile timeline)",
+                "User profiles",
+                "Followers of a user",
+                "Accounts a user follows",
+                "Tweet replies (conversation)",
+                "Tweet retweeters",
+                "List tweets",
+                "Community tweets",
+                "Trends by location"
+            ],
+            "default": "searchTweets",
+            "prefill": "searchTweets"
+        },
+        "searchQueries": {
+            "title": "Search queries",
+            "type": "array",
+            "description": "For mode <b>Search tweets</b>. One query per line. X search operators work, for example <code>from:nasa</code>, <code>\"exact phrase\"</code>, <code>lang:en</code>, <code>since:2025-01-01</code>, <code>min_faves:100</code>, <code>-filter:replies</code>. Max 512 characters per query.",
+            "editor": "stringList",
+            "prefill": ["openai lang:en -filter:replies"],
+            "example": ["openai lang:en -filter:replies", "from:nasa since:2025-01-01"],
+            "sectionCaption": "Search",
+            "sectionDescription": "Used by mode Search tweets."
+        },
+        "searchCategory": {
+            "title": "Search tab",
+            "type": "string",
+            "description": "Which X search tab to read. <b>Latest</b> is newest first. <b>People</b> returns accounts instead of tweets.",
+            "editor": "select",
+            "enum": ["Latest", "Top", "People", "Photos", "Videos"],
+            "default": "Latest"
+        },
+        "usernames": {
+            "title": "Usernames",
+            "type": "array",
+            "description": "For modes <b>User tweets</b>, <b>User profiles</b>, <b>Followers</b> and <b>Following</b>. One per line: <code>nasa</code>, <code>@nasa</code> or <code>https://x.com/nasa</code>.",
+            "editor": "stringList",
+            "example": ["nasa", "https://x.com/elonmusk"],
+            "sectionCaption": "Users",
+            "sectionDescription": "Used by modes User tweets, User profiles, Followers and Following. Fill in usernames, user IDs, or both."
+        },
+        "userIds": {
+            "title": "User IDs",
+            "type": "array",
+            "description": "Numeric X user IDs (rest_id), one per line. Slightly faster than usernames. User profiles are fetched 100 IDs per request.",
+            "editor": "stringList",
+            "example": ["11348282"]
+        },
+        "tweetIds": {
+            "title": "Tweet IDs or URLs",
+            "type": "array",
+            "description": "For modes <b>Tweet replies</b> and <b>Tweet retweeters</b>. One per line: the numeric ID or the tweet URL, e.g. <code>https://x.com/nasa/status/1844000000000000001</code>.",
+            "editor": "stringList",
+            "example": ["https://x.com/nasa/status/1844000000000000001"],
+            "sectionCaption": "Tweets, lists and communities"
+        },
+        "listIds": {
+            "title": "List IDs or URLs",
+            "type": "array",
+            "description": "For mode <b>List tweets</b>. Numeric list ID or URL, e.g. <code>https://x.com/i/lists/1234567890</code>.",
+            "editor": "stringList"
+        },
+        "communityIds": {
+            "title": "Community IDs or URLs",
+            "type": "array",
+            "description": "For mode <b>Community tweets</b>. Numeric community ID or URL, e.g. <code>https://x.com/i/communities/1234567890</code>.",
+            "editor": "stringList"
+        },
+        "woeids": {
+            "title": "Trend locations (WOEID)",
+            "type": "array",
+            "description": "For mode <b>Trends</b>. Yahoo WOEIDs: <code>1</code> = worldwide, <code>23424977</code> = United States, <code>23424975</code> = United Kingdom, <code>23424829</code> = Germany. Defaults to worldwide.",
+            "editor": "stringList",
+            "example": ["1", "23424977"],
+            "sectionCaption": "Trends"
+        },
+        "maxItems": {
+            "title": "Max items per input",
+            "type": "integer",
+            "description": "Stop after this many results for each query, user, tweet, list, community or location. You pay per result, so this also caps the cost per input.",
+            "editor": "number",
+            "minimum": 1,
+            "maximum": 100000,
+            "default": 100,
+            "prefill": 100,
+            "unit": "items",
+            "sectionCaption": "Limits and output"
+        },
+        "maxPages": {
+            "title": "Max pages per input",
+            "type": "integer",
+            "description": "Safety limit on requests per input. A page usually holds about 20 results. Raise it together with Max items for large pulls.",
+            "editor": "number",
+            "minimum": 1,
+            "maximum": 1000,
+            "default": 20,
+            "unit": "pages"
+        },
+        "includeRaw": {
+            "title": "Include raw X data",
+            "type": "boolean",
+            "description": "Adds a <code>raw</code> field with X's original JSON for each item. Useful for fields this Actor does not flatten. Makes items much larger.",
+            "editor": "checkbox",
+            "default": false
+        }
+    },
+    "required": ["mode"]
+}

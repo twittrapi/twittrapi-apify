@@ -1,0 +1,22 @@
+{
+  "data": {
+    "communityResults": {
+      "result": {
+        "__typename": "Community",
+        "ranked_community_timeline": {
+          "timeline": {
+            "instructions": [
+              {
+                "type": "TimelineAddEntries",
+                "entries": [
+                  { "entryId": "tweet-1844300000000000001", "content": { "entryType": "TimelineTimelineItem", "itemContent": { "itemType": "TimelineTweet", "tweet_results": { "result": { "__typename": "Tweet", "rest_id": "1844300000000000001", "core": { "user_results": { "result": { "__typename": "User", "rest_id": "2001", "core": { "screen_name": "follower_one", "name": "Follower One" }, "legacy": { "followers_count": 150 } } } }, "legacy": { "created_at": "Thu Oct 10 11:00:00 +0000 2024", "conversation_id_str": "1844300000000000001", "full_text": "Community post", "lang": "de", "favorite_count": 3, "retweet_count": 1, "reply_count": 0, "quote_count": 0 } } } } } },
+                  { "entryId": "cursor-bottom-0", "content": { "entryType": "TimelineTimelineCursor", "value": "COMM_PAGE_2", "cursorType": "Bottom" } }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

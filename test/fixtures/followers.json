@@ -1,0 +1,96 @@
+{
+  "data": {
+    "user": {
+      "result": {
+        "__typename": "User",
+        "timeline": {
+          "timeline": {
+            "instructions": [
+              { "type": "TimelineClearCache" },
+              {
+                "type": "TimelineAddEntries",
+                "entries": [
+                  {
+                    "entryId": "user-2001",
+                    "content": {
+                      "entryType": "TimelineTimelineItem",
+                      "itemContent": {
+                        "itemType": "TimelineUser",
+                        "__typename": "TimelineUser",
+                        "user_results": {
+                          "result": {
+                            "__typename": "User",
+                            "rest_id": "2001",
+                            "is_blue_verified": false,
+                            "core": { "screen_name": "follower_one", "name": "Follower One", "created_at": "Fri Feb 14 12:00:00 +0000 2020" },
+                            "avatar": { "image_url": "https://pbs.twimg.com/profile_images/3/f1_normal.jpg" },
+                            "location": { "location": "" },
+                            "privacy": { "protected": false },
+                            "legacy": {
+                              "description": "Coffee and code",
+                              "followers_count": 150,
+                              "friends_count": 300,
+                              "statuses_count": 1000,
+                              "url": "https://t.co/xyz",
+                              "entities": { "url": { "urls": [ { "url": "https://t.co/xyz", "expanded_url": "https://follower.example", "display_url": "follower.example" } ] } }
+                            }
+                          }
+                        },
+                        "userDisplayType": "User"
+                      }
+                    }
+                  },
+                  {
+                    "entryId": "user-2002",
+                    "content": {
+                      "entryType": "TimelineTimelineItem",
+                      "itemContent": {
+                        "itemType": "TimelineUser",
+                        "user_results": {
+                          "result": {
+                            "__typename": "User",
+                            "rest_id": "2002",
+                            "is_blue_verified": true,
+                            "legacy": {
+                              "screen_name": "follower_two",
+                              "name": "Follower Two",
+                              "created_at": "Sun Jul 01 00:00:00 +0000 2012",
+                              "description": "",
+                              "followers_count": 9001,
+                              "friends_count": 10,
+                              "statuses_count": 20,
+                              "verified_type": "Business",
+                              "profile_image_url_https": "https://pbs.twimg.com/profile_images/4/f2_normal.jpg",
+                              "profile_banner_url": "https://pbs.twimg.com/profile_banners/2002/1",
+                              "protected": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "entryId": "user-2003",
+                    "content": {
+                      "entryType": "TimelineTimelineItem",
+                      "itemContent": { "itemType": "TimelineUser", "user_results": { "result": { "__typename": "UserUnavailable", "reason": "Suspended" } } }
+                    }
+                  },
+                  {
+                    "entryId": "user-2004",
+                    "content": {
+                      "entryType": "TimelineTimelineItem",
+                      "itemContent": { "itemType": "TimelineUser", "user_results": {} }
+                    }
+                  },
+                  { "entryId": "cursor-bottom-1", "content": { "entryType": "TimelineTimelineCursor", "value": "FOLLOWERS_PAGE_2", "cursorType": "Bottom" } },
+                  { "entryId": "cursor-top-1", "content": { "entryType": "TimelineTimelineCursor", "value": "-1|0", "cursorType": "Top" } }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

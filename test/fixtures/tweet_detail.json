@@ -1,0 +1,109 @@
+{
+  "data": {
+    "threaded_conversation_with_injections_v2": {
+      "instructions": [
+        {
+          "type": "TimelineAddEntries",
+          "entries": [
+            {
+              "entryId": "tweet-1844000000000000001",
+              "content": {
+                "entryType": "TimelineTimelineItem",
+                "itemContent": {
+                  "itemType": "TimelineTweet",
+                  "tweet_results": {
+                    "result": {
+                      "__typename": "Tweet",
+                      "rest_id": "1844000000000000001",
+                      "core": { "user_results": { "result": { "__typename": "User", "rest_id": "12345", "core": { "screen_name": "ada_example", "name": "Ada Example" }, "legacy": { "followers_count": 52000 } } } },
+                      "legacy": { "created_at": "Wed Oct 09 14:03:11 +0000 2024", "conversation_id_str": "1844000000000000001", "full_text": "Postgres 17 is out.", "lang": "en", "favorite_count": 420, "retweet_count": 61, "reply_count": 18, "quote_count": 7, "bookmark_count": 95 }
+                    }
+                  },
+                  "tweetDisplayType": "Tweet",
+                  "hasModeratedReplies": false
+                }
+              }
+            },
+            {
+              "entryId": "conversationthread-1844000000000000011",
+              "content": {
+                "entryType": "TimelineTimelineModule",
+                "displayType": "VerticalConversation",
+                "items": [
+                  {
+                    "entryId": "conversationthread-1844000000000000011-tweet-1844000000000000011",
+                    "item": {
+                      "itemContent": {
+                        "itemType": "TimelineTweet",
+                        "tweet_results": {
+                          "result": {
+                            "__typename": "Tweet",
+                            "rest_id": "1844000000000000011",
+                            "core": { "user_results": { "result": { "__typename": "User", "rest_id": "3001", "core": { "screen_name": "replier_a", "name": "Replier A" }, "legacy": { "followers_count": 10 } } } },
+                            "legacy": { "created_at": "Wed Oct 09 14:10:00 +0000 2024", "conversation_id_str": "1844000000000000001", "in_reply_to_status_id_str": "1844000000000000001", "in_reply_to_screen_name": "ada_example", "full_text": "@ada_example Finally!", "lang": "en", "favorite_count": 5, "retweet_count": 0, "reply_count": 1, "quote_count": 0, "bookmark_count": 0 }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "entryId": "conversationthread-1844000000000000011-tweet-1844000000000000012",
+                    "item": {
+                      "itemContent": {
+                        "itemType": "TimelineTweet",
+                        "tweet_results": {
+                          "result": {
+                            "__typename": "Tweet",
+                            "rest_id": "1844000000000000012",
+                            "core": { "user_results": { "result": { "__typename": "User", "rest_id": "12345", "core": { "screen_name": "ada_example", "name": "Ada Example" }, "legacy": { "followers_count": 52000 } } } },
+                            "legacy": { "created_at": "Wed Oct 09 14:12:00 +0000 2024", "conversation_id_str": "1844000000000000001", "in_reply_to_status_id_str": "1844000000000000011", "in_reply_to_screen_name": "replier_a", "full_text": "@replier_a Yes!", "lang": "en", "favorite_count": 2, "retweet_count": 0, "reply_count": 0, "quote_count": 0, "bookmark_count": 0 }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "entryId": "conversationthread-1844000000000000011-cursor-showmore-1",
+                    "item": { "itemContent": { "itemType": "TimelineTimelineCursor", "value": "SHOWMORE_1", "cursorType": "ShowMoreThreads" } }
+                  }
+                ]
+              }
+            },
+            {
+              "entryId": "conversationthread-1844000000000000013",
+              "content": {
+                "entryType": "TimelineTimelineModule",
+                "items": [
+                  {
+                    "entryId": "conversationthread-1844000000000000013-tweet-1844000000000000013",
+                    "item": {
+                      "itemContent": {
+                        "itemType": "TimelineTweet",
+                        "tweet_results": {
+                          "result": {
+                            "__typename": "Tweet",
+                            "rest_id": "1844000000000000013",
+                            "core": { "user_results": { "result": { "__typename": "User", "rest_id": "3002", "legacy": { "screen_name": "replier_b", "name": "Replier B", "followers_count": 77 } } } },
+                            "legacy": { "created_at": "Wed Oct 09 15:00:00 +0000 2024", "conversation_id_str": "1844000000000000001", "in_reply_to_status_id_str": "1844000000000000001", "in_reply_to_screen_name": "ada_example", "full_text": "@ada_example What about logical replication?", "lang": "en", "favorite_count": 1, "retweet_count": 0, "reply_count": 0, "quote_count": 0, "bookmark_count": 0 }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "entryId": "cursor-bottom-1844000000000000001",
+              "content": {
+                "entryType": "TimelineTimelineItem",
+                "itemContent": { "itemType": "TimelineTimelineCursor", "value": "REPLIES_PAGE_2", "cursorType": "Bottom" }
+              }
+            }
+          ]
+        },
+        { "type": "TimelineTerminateTimeline", "direction": "Top" }
+      ]
+    }
+  }
+}

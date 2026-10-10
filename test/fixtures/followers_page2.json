@@ -1,0 +1,31 @@
+{
+  "data": {
+    "user": {
+      "result": {
+        "__typename": "User",
+        "timeline": {
+          "timeline": {
+            "instructions": [
+              {
+                "type": "TimelineAddEntries",
+                "entries": [
+                  {
+                    "entryId": "user-2005",
+                    "content": {
+                      "entryType": "TimelineTimelineItem",
+                      "itemContent": {
+                        "itemType": "TimelineUser",
+                        "user_results": { "result": { "__typename": "User", "rest_id": "2005", "core": { "screen_name": "follower_five", "name": "Follower Five" }, "legacy": { "followers_count": 5 } } }
+                      }
+                    }
+                  },
+                  { "entryId": "cursor-bottom-2", "content": { "entryType": "TimelineTimelineCursor", "value": "0|1844000000000000000", "cursorType": "Bottom" } }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

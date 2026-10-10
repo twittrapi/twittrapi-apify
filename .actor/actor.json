@@ -1,0 +1,20 @@
+{
+    "$schema": "https://apify.com/schemas/v1/actor.ide.json",
+    "actorSpecification": 1,
+    "name": "twitter-x-data-twittrapi",
+    "title": "Twitter (X) Data API: Tweets, Profiles, Followers, Search",
+    "description": "Get tweets, search results, profiles, followers, following, replies, retweeters, list and community tweets, and trends from X (Twitter) as clean JSON. No login, no browser, no X account needed.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "minMemoryMbytes": 128,
+    "maxMemoryMbytes": 1024,
+    "defaultMemoryMbytes": 256,
+    "inputSchema": "./input_schema.json",
+    "outputSchema": "./output_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "readme": "../README.md",
+    "changelog": "../CHANGELOG.md",
+    "dockerfile": "../Dockerfile"
+}

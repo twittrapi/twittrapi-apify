@@ -1,0 +1,32 @@
+{
+  "name": "twittrapi-apify",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Apify Actor that collects Twitter/X tweets, profiles, followers, replies, lists, communities and trends through TwittrAPI and returns clean dataset items.",
+  "license": "MIT",
+  "author": "TwittrAPI",
+  "homepage": "https://twittrapi.com",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "npm run start:dev",
+    "start:dev": "npm run build && node dist/main.js",
+    "start:prod": "node dist/main.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node scripts/clean.mjs build-test && tsc -p tsconfig.json && node --test \"build-test/test/*.test.js\"",
+    "mock-server": "node scripts/mock-server.mjs",
+    "e2e": "npm run build && node scripts/e2e.mjs"
+  },
+  "dependencies": {
+    "apify": "3.7.2",
+    "twittrapi": "file:vendor/twittrapi-0.1.0.tgz"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.21",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "$schema": "https://apify.com/schemas/v1/output.ide.json",
+    "actorOutputSchemaVersion": 1,
+    "title": "Output",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Results",
+            "description": "Tweets, users or trends, one dataset item each.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        },
+        "summary": {
+            "type": "string",
+            "title": "Run summary",
+            "description": "Items and pages per input, and any input that was skipped.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/RUN_SUMMARY"
+        }
+    }
+}
