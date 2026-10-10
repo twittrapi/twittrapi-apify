@@ -7,8 +7,9 @@
  * - both the older shape (`legacy.screen_name`, `profile_image_url_https`) and the newer one
  *   (`core.screen_name`, `avatar.image_url`, `location.location`) are read.
  *
- * The fixtures in test/fixtures are hand-written from X's documented/observed GraphQL shapes.
- * They must be checked against real TwittrAPI responses before relying on every field.
+ * The fixtures in test/fixtures/*.json are hand-written. test/fixtures/live/*.json are trimmed real
+ * TwittrAPI responses (2026-10-10) and test/live.test.ts checks the flatteners against them: tweet
+ * authors use core.screen_name, follower/retweeter/list-member users use legacy.screen_name only.
  */
 
 type Obj = Record<string, unknown>;

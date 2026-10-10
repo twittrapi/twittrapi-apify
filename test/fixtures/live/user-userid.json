@@ -1,0 +1,119 @@
+{
+  "request": "GET /user/2244994945",
+  "capturedAt": "2026-10-10",
+  "response": {
+    "data": {
+      "user": {
+        "result": {
+          "__typename": "User",
+          "affiliates_highlighted_label": {
+            "label": {
+              "badge": {
+                "url": "https://pbs.twimg.com/profile_images/1955359038532653056/OSHY3ewP_bigger.jpg"
+              },
+              "description": "X",
+              "url": {
+                "url": "https://twitter.com/X",
+                "urlType": "DeepLink"
+              },
+              "userLabelDisplayType": "Badge",
+              "userLabelType": "BusinessLabel"
+            }
+          },
+          "business_account": {},
+          "creator_subscriptions_count": 0,
+          "has_graduated_access": true,
+          "has_hidden_subscriptions_on_profile": false,
+          "highlights_info": {
+            "can_highlight_tweets": true,
+            "highlighted_tweets": "4"
+          },
+          "id": "VXNlcjoyMjQ0OTk0OTQ1",
+          "is_blue_verified": true,
+          "legacy": {
+            "blocked_by": false,
+            "blocking": false,
+            "can_dm": true,
+            "can_media_tag": true,
+            "created_at": "Sat Dec 14 04:35:55 +0000 2013",
+            "default_profile": false,
+            "default_profile_image": false,
+            "description": "The voice of the X Dev team and your official source for updates, news, and events, related to the X API.",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "docs.x.com",
+                    "expanded_url": "https://docs.x.com/",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/NIwHVIVyrN"
+                  }
+                ]
+              }
+            },
+            "fast_followers_count": 0,
+            "favourites_count": 2758,
+            "follow_request_sent": false,
+            "followed_by": false,
+            "followers_count": 698057,
+            "following": false,
+            "friends_count": 770,
+            "has_custom_timelines": true,
+            "is_translator": false,
+            "listed_count": 2977,
+            "location": "127.0.0.1",
+            "media_count": 832,
+            "muting": false,
+            "name": "Developers",
+            "needs_phone_verification": false,
+            "normal_followers_count": 698057,
+            "notifications": false,
+            "pinned_tweet_ids_str": [
+              "2019881223666233717"
+            ],
+            "possibly_sensitive": false,
+            "profile_banner_url": "https://pbs.twimg.com/profile_banners/2244994945/1690213128",
+            "profile_image_url_https": "https://pbs.twimg.com/profile_images/1683501992314798080/xl1POYLw_normal.jpg",
+            "profile_interstitial_type": "",
+            "protected": false,
+            "screen_name": "XDevelopers",
+            "statuses_count": 4376,
+            "time_zone": "",
+            "translator_type": "regular",
+            "url": "https://t.co/NIwHVIVyrN",
+            "utc_offset": 0,
+            "verified": false,
+            "verified_type": "Business",
+            "want_retweets": false,
+            "withheld_description": "",
+            "withheld_scope": ""
+          },
+          "parody_commentary_fan_label": "None",
+          "premium_gifting_eligible": false,
+          "professional": {
+            "category": [
+              {
+                "icon_name": "IconBriefcaseStroke",
+                "id": 1009,
+                "name": "Community"
+              }
+            ],
+            "professional_type": "Business",
+            "rest_id": "1516891231749517312"
+          },
+          "profile_image_shape": "Square",
+          "rest_id": "2244994945",
+          "super_follow_eligible": false,
+          "super_followed_by": false,
+          "super_following": false,
+          "tipjar_settings": {},
+          "user_seed_tweet_count": 3
+        }
+      }
+    }
+  }
+}
