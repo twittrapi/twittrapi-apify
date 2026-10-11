@@ -3,7 +3,7 @@
     "actorSpecification": 1,
     "name": "twitter-x-data-twittrapi",
     "title": "Twitter (X) Data API: Tweets, Profiles, Followers, Search",
-    "description": "Get tweets, search results, profiles, followers, following, replies, retweeters, list and community tweets, and trends from X (Twitter) as clean JSON. No login, no browser, no X account needed.",
+    "description": "Read public Twitter/X tweets, profiles, followers, replies, search, lists, communities and trends as clean JSON via TwittrAPI. No X account or login needed.",
     "version": "0.1",
     "buildTag": "latest",
     "minMemoryMbytes": 128,

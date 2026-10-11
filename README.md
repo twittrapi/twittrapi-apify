@@ -1,8 +1,8 @@
 # Twitter (X) Data API: Tweets, Profiles, Followers, Search
 
-Get tweets, search results, profiles, followers, replies, retweeters, list and community tweets, and trends from X (Twitter) as clean JSON, CSV or Excel. You don't need an X account, a login, cookies or proxies, and nothing runs in a browser.
+Read public Twitter/X data: tweets, search results, profiles, followers, replies, retweeters, list and community tweets, and trends, as clean JSON, CSV or Excel. You don't need an X account, a login, cookies or proxies, and nothing runs in a browser.
 
-This Actor gets its data from [TwittrAPI](https://twittrapi.com/?utm_source=apify), a hosted X data API, so runs are quick and use little memory. Every tweet and user comes back with the same flat fields, so you can load the results into a spreadsheet or database without cleaning them up first.
+This Actor gets its data from [TwittrAPI](https://twittrapi.com/?utm_source=apify), a REST API for public Twitter/X data, so runs are quick and use little memory. Every tweet and user comes back with the same flat fields, so you can load the results into a spreadsheet or database without cleaning them up first.
 
 ## What can it collect?
 

@@ -2,7 +2,7 @@
   "name": "twittrapi-apify",
   "version": "0.1.0",
   "private": true,
-  "description": "Apify Actor that collects Twitter/X tweets, profiles, followers, replies, lists, communities and trends through TwittrAPI and returns clean dataset items.",
+  "description": "Apify Actor for TwittrAPI: read public Twitter/X tweets, profiles, followers and search results as clean dataset items. No X developer account.",
   "license": "MIT",
   "author": "TwittrAPI",
   "homepage": "https://twittrapi.com",
