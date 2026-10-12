@@ -3,8 +3,6 @@
 FROM apify/actor-node:24 AS builder
 
 COPY --chown=myuser:myuser package*.json ./
-# The TwittrAPI SDK is vendored as a tarball until it is published on npm (see README, "SDK").
-COPY --chown=myuser:myuser vendor ./vendor
 RUN npm ci --include=dev --audit=false
 
 COPY --chown=myuser:myuser . ./
@@ -14,7 +12,6 @@ RUN npm run build
 FROM apify/actor-node:24
 
 COPY --chown=myuser:myuser package*.json ./
-COPY --chown=myuser:myuser vendor ./vendor
 RUN npm --quiet set progress=false \
     && npm ci --omit=dev --omit=optional --audit=false \
     && echo "Installed NPM packages:" \

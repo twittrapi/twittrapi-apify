@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "apify": "3.7.2",
-    "twittrapi": "file:vendor/twittrapi-0.1.0.tgz"
+    "twittrapi": "0.2.0"
   },
   "devDependencies": {
     "@types/node": "22.19.21",

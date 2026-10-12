@@ -17,39 +17,11 @@ src/input.ts                Input validation, URL -> ID parsing
 test/                       Unit tests (node:test) and hand-written fixtures
 scripts/mock-server.mjs     Local mock of the TwittrAPI HTTP API serving the fixtures
 scripts/e2e.mjs             Runs the built Actor against the mock with local storage
-vendor/twittrapi-0.1.0.tgz  The TwittrAPI Node SDK, vendored (see below)
 ```
 
-## The TwittrAPI SDK (vendored)
+## The TwittrAPI SDK
 
-The HTTP layer is the official SDK (`twittrapi`, source in the `twittrapi-node` repo). It handles auth
-headers, retries with backoff, Retry-After on 429, typed errors (402 -> `InsufficientBalanceError`,
-429 -> `RateLimitError`, ...) and bottom-cursor pagination (`client.paginate`).
-
-It is not on npm yet, so it is vendored as the tarball `npm pack` produces, and package.json points at it:
-
-```json
-"twittrapi": "file:vendor/twittrapi-0.1.0.tgz"
-```
-
-Why a tarball and not `file:../twittrapi-node`: the Apify build (and `docker build`) only sees this
-repository, so a path outside it would break the build. The tarball is the exact published artifact
-(built `dist/` only), works with `npm ci`, and is copied into the image before `npm ci` in the Dockerfile.
-
-To update it after changing the SDK:
-
-```bash
-cd ../twittrapi-node && npm run build && npm pack --pack-destination ../twittrapi-apify/vendor
-cd ../twittrapi-apify && npm install   # refreshes package-lock.json
-```
-
-### Switching to npm once `twittrapi` is published
-
-1. `npm install twittrapi@<exact version> --save-exact`
-2. Delete `vendor/` and remove the two `COPY ... vendor ./vendor` lines from the Dockerfile.
-3. `npm test && npm run build && npm run e2e`
-
-No source changes are needed; the import is already `from "twittrapi"`.
+The actor uses the published npm package `twittrapi` (pinned in package.json). To update it: `npm install twittrapi@<version> --save-exact`, run the tests, then `apify push`.
 
 ## Flattening
 
