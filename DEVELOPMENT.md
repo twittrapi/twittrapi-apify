@@ -1,6 +1,6 @@
 # Development and publishing notes
 
-README.md is the Apify Store page. This file is for the Actor owner and contributors.
+.actor/README.md is the Apify Store page; README.md is the GitHub page. This file is for the Actor owner and contributors.
 
 ## Layout
 
@@ -121,7 +121,7 @@ events are charged as items are pushed.
    remove the synthetic `apify-default-dataset-item` event or keep it and drop `result`, not both.
    Keep the default `apify-actor-start` event. Pricing changes take effect after the notice period
    Apify shows.
-5. Fill in the pricing placeholder in README.md, add an icon, pick categories (Social media, Lead
+5. Fill in the pricing placeholder in .actor/README.md, add an icon, pick categories (Social media, Lead
    generation), and publish to the Store.
 6. Watch for failed runs: 401/403 means the key is wrong, and 402 means the partner balance is empty.
    Both stop runs with a clear status message.

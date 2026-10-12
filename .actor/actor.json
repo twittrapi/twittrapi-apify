@@ -14,7 +14,7 @@
     "storages": {
         "dataset": "./dataset_schema.json"
     },
-    "readme": "../README.md",
+    "readme": "./README.md",
     "changelog": "../CHANGELOG.md",
     "dockerfile": "../Dockerfile"
 }
