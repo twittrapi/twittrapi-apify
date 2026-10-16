@@ -14,7 +14,8 @@ them as clean JSON, CSV or Excel. No X account, login, cookies or proxies. Not a
 
 **SDKs and integrations:** [Python](https://github.com/twittrapi/twittrapi-python) · [Node.js](https://github.com/twittrapi/twittrapi-node) · [Go](https://github.com/twittrapi/twittrapi-go) · [MCP server](https://github.com/twittrapi/twittrapi-mcp) · [n8n](https://github.com/twittrapi/n8n-nodes-twittrapi) · [Make](https://www.make.com/en/hq/app-invitation/bfe92727f14ab2c74d3c2e74281d84b1) · [LangChain](https://github.com/twittrapi/langchain-twittrapi) · [LlamaIndex](https://github.com/twittrapi/llama-index-tools-twittrapi) · [Agent skill](https://github.com/twittrapi/twittrapi-skills) · [Examples](https://github.com/twittrapi/twittrapi-examples)
 
-The Apify Store page (modes, input examples, output fields, FAQ) is [`.actor/README.md`](.actor/README.md).
+**Run it on Apify:** [apify.com/kiddodev/twitter-x-data-twittrapi](https://apify.com/kiddodev/twitter-x-data-twittrapi), $0.15 per 1,000 results, no start fee.
+The Store page text (modes, input examples, output fields, FAQ) is [`.actor/README.md`](.actor/README.md).
 Build, test and publishing notes are in [DEVELOPMENT.md](DEVELOPMENT.md).
 
 ## Run it locally
