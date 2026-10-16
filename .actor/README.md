@@ -201,8 +201,7 @@ The examples above use made-up accounts.
 
 ## How much does it cost?
 
-<!-- PRICING PLACEHOLDER: fill in once pay-per-event pricing is set in Apify Console. -->
-You pay per result: **$X.XX per 1,000 items** (tweets, users or trends). You don't pay extra for proxies or compute. To control spending, set **Max items per input**, or set a maximum cost per run in the run options. The Actor stops when it reaches either limit, and it keeps the items it already collected.
+You pay per result: **$0.15 per 1,000 items** (tweets, users or trends), plus $0.002 when a run starts. There is no minimum per query and no fee per query, and you don't pay extra for proxies or compute. To control spending, set **Max items per input**, or set a maximum cost per run in the run options. The Actor stops when it reaches either limit, and it keeps the items it already collected.
 
 ## FAQ
 
