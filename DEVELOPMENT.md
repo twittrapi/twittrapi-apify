@@ -93,7 +93,8 @@ events are charged as items are pushed.
    owner decision 2026-10-16: below the Tweet Scraper's $0.40 and Kaito's $0.18 to $0.25, still profitable
    after Apify's 20 % because a page of about 20 tweets costs one TwittrAPI call). Either
    remove the synthetic `apify-default-dataset-item` event or keep it and drop `result`, not both.
-   Keep the default `apify-actor-start` event at $0.002 per run (covers the compute of a short run). Pricing changes take effect after the notice period
+   Set the `apify-actor-start` event to $0 (or remove it if Apify allows): no start fee is a selling point,
+   and the compute of a short run (about $0.0002) is covered by the margin on the results. Pricing changes take effect after the notice period
    Apify shows.
 5. Fill in the pricing placeholder in .actor/README.md, add an icon, pick categories (Social media, Lead
    generation), and publish to the Store.
