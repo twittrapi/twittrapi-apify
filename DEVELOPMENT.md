@@ -63,7 +63,7 @@ or each item is charged twice.
 npm install
 npm test          # tsc + node:test: flatteners, input parsing, collection with a fake fetch
 npm run build
-npm run e2e       # 14 scenarios against the mock API, local storage under storage/e2e/<scenario>/
+npm run e2e       # 20 scenarios against the mock API, local storage under storage/e2e/<scenario>/
 ```
 
 To use the Apify CLI instead (no login needed, nothing is pushed):

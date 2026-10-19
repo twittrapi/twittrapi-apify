@@ -8,7 +8,7 @@
         "mode": {
             "title": "Mode",
             "type": "string",
-            "description": "What to collect. Each mode reads one of the fields below:<br><b>Search tweets</b>: Search queries.<br><b>User tweets</b>, <b>User profiles</b>, <b>Followers</b>, <b>Following</b>: Usernames or User IDs.<br><b>Tweet replies</b>, <b>Tweet retweeters</b>: Tweet IDs or URLs.<br><b>List tweets</b>: List IDs. <b>Community tweets</b>: Community IDs. <b>Trends</b>: Locations (WOEIDs).",
+            "description": "What to collect. Each mode reads one of the fields below:<br><b>Search tweets</b>: Search queries.<br><b>User tweets</b>, <b>User profiles</b>, <b>Followers</b>, <b>Verified followers</b>, <b>Following</b>, <b>Affiliates</b>: Usernames or User IDs.<br><b>Tweet replies</b>, <b>Tweet thread</b>, <b>Tweet retweeters</b>, <b>Quote tweets</b>: Tweet IDs or URLs.<br><b>List tweets</b>, <b>List members</b>: List IDs. <b>Community tweets</b>, <b>Community members</b>: Community IDs. <b>Trends</b>: Locations (WOEIDs).",
             "editor": "select",
             "enum": [
                 "searchTweets",
@@ -20,7 +20,13 @@
                 "tweetRetweeters",
                 "listTweets",
                 "communityTweets",
-                "trends"
+                "trends",
+                "tweetQuotes",
+                "tweetThread",
+                "userAffiliates",
+                "verifiedFollowers",
+                "listMembers",
+                "communityMembers"
             ],
             "enumTitles": [
                 "Search tweets",
@@ -32,7 +38,13 @@
                 "Tweet retweeters",
                 "List tweets",
                 "Community tweets",
-                "Trends by location"
+                "Trends by location",
+                "Quote tweets",
+                "Tweet thread (by the author)",
+                "Affiliates of an organization",
+                "Verified followers of a user",
+                "List members",
+                "Community members"
             ],
             "default": "searchTweets",
             "prefill": "searchTweets"
@@ -58,11 +70,11 @@
         "usernames": {
             "title": "Usernames",
             "type": "array",
-            "description": "For modes <b>User tweets</b>, <b>User profiles</b>, <b>Followers</b> and <b>Following</b>. One per line: <code>nasa</code>, <code>@nasa</code> or <code>https://x.com/nasa</code>.",
+            "description": "For modes <b>User tweets</b>, <b>User profiles</b>, <b>Followers</b>, <b>Verified followers</b>, <b>Following</b> and <b>Affiliates</b>. One per line: <code>nasa</code>, <code>@nasa</code> or <code>https://x.com/nasa</code>.",
             "editor": "stringList",
             "example": ["nasa", "https://x.com/elonmusk"],
             "sectionCaption": "Users",
-            "sectionDescription": "Used by modes User tweets, User profiles, Followers and Following. Fill in usernames, user IDs, or both."
+            "sectionDescription": "Used by modes User tweets, User profiles, Followers, Verified followers, Following and Affiliates. Fill in usernames, user IDs, or both."
         },
         "userIds": {
             "title": "User IDs",
@@ -74,7 +86,7 @@
         "tweetIds": {
             "title": "Tweet IDs or URLs",
             "type": "array",
-            "description": "For modes <b>Tweet replies</b> and <b>Tweet retweeters</b>. One per line: the numeric ID or the tweet URL, e.g. <code>https://x.com/nasa/status/1844000000000000001</code>.",
+            "description": "For modes <b>Tweet replies</b>, <b>Tweet thread</b>, <b>Tweet retweeters</b> and <b>Quote tweets</b>. One per line: the numeric ID or the tweet URL, e.g. <code>https://x.com/nasa/status/1844000000000000001</code>.",
             "editor": "stringList",
             "example": ["https://x.com/nasa/status/1844000000000000001"],
             "sectionCaption": "Tweets, lists and communities"
@@ -82,13 +94,13 @@
         "listIds": {
             "title": "List IDs or URLs",
             "type": "array",
-            "description": "For mode <b>List tweets</b>. Numeric list ID or URL, e.g. <code>https://x.com/i/lists/1234567890</code>.",
+            "description": "For modes <b>List tweets</b> and <b>List members</b>. Numeric list ID or URL, e.g. <code>https://x.com/i/lists/1234567890</code>.",
             "editor": "stringList"
         },
         "communityIds": {
             "title": "Community IDs or URLs",
             "type": "array",
-            "description": "For mode <b>Community tweets</b>. Numeric community ID or URL, e.g. <code>https://x.com/i/communities/1234567890</code>.",
+            "description": "For modes <b>Community tweets</b> and <b>Community members</b>. Numeric community ID or URL, e.g. <code>https://x.com/i/communities/1234567890</code>.",
             "editor": "stringList"
         },
         "woeids": {

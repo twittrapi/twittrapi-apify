@@ -377,6 +377,35 @@ export function findEntries(data: unknown): Obj[] {
   return out;
 }
 
+/**
+ * Collects the elements of slice lists (`{ items_results: [...], slice_info }`), which community
+ * member lists use instead of timeline entries.
+ */
+export function findSliceItems(data: unknown): unknown[] {
+  const out: unknown[] = [];
+  const stack: unknown[] = [data];
+  let visited = 0;
+  while (stack.length > 0 && visited < MAX_NODES) {
+    const node = stack.pop();
+    visited++;
+    if (Array.isArray(node)) {
+      for (let i = node.length - 1; i >= 0; i--) stack.push(node[i]);
+      continue;
+    }
+    if (!isObj(node)) continue;
+    if (Array.isArray(node.items_results)) {
+      out.push(...node.items_results);
+      continue;
+    }
+    const values = Object.values(node);
+    for (let i = values.length - 1; i >= 0; i--) {
+      const v = values[i];
+      if (v && typeof v === "object") stack.push(v);
+    }
+  }
+  return out;
+}
+
 /** The itemContent objects of an entry: one for TimelineTimelineItem, several for modules. */
 function entryItemContents(entry: Obj): Obj[] {
   const out: Obj[] = [];
@@ -400,7 +429,8 @@ function isPromoted(entryId: string, ic: Obj): boolean {
 
 /**
  * Extracts tweets and users from a timeline response (search, user tweets, followers, replies,
- * list, community, retweeters). Promoted entries and cursors are skipped. Order follows the
+ * list, community, retweeters, thread, affiliates) or a slice response (community members).
+ * Promoted entries and cursors are skipped. Order follows the
  * response; duplicates are kept here and removed by the caller.
  */
 export function flattenTimeline(data: unknown, opts: FlattenOptions = {}): (TweetItem | UserItem)[] {
@@ -427,6 +457,17 @@ export function flattenTimeline(data: unknown, opts: FlattenOptions = {}): (Twee
       }
     } catch {
       // skip this entry
+    }
+  }
+  if (entries.length === 0) {
+    try {
+      for (const v of findSliceItems(data)) {
+        const tn = get(v, "result", "__typename") ?? get(v, "__typename");
+        const item = tn === "Tweet" || tn === "TweetWithVisibilityResults" ? flattenTweet(v, opts) : flattenUser(v, opts);
+        if (item) out.push(item);
+      }
+    } catch {
+      // return what we have
     }
   }
   return out;

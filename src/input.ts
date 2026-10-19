@@ -11,6 +11,12 @@ export const MODES = [
   "listTweets",
   "communityTweets",
   "trends",
+  "tweetQuotes",
+  "tweetThread",
+  "userAffiliates",
+  "verifiedFollowers",
+  "listMembers",
+  "communityMembers",
 ] as const;
 export type Mode = (typeof MODES)[number];
 
@@ -162,6 +168,8 @@ export function parseInput(raw: RawInput | null | undefined): ParsedInput {
     case "userProfiles":
     case "followers":
     case "following":
+    case "verifiedFollowers":
+    case "userAffiliates":
       targets = [
         ...collect(stringList(input.usernames, "usernames"), parseUsername, "username", invalid),
         ...collect(stringList(input.userIds, "userIds"), (s) => (NUMERIC.test(s) ? s : undefined), "userId", invalid),
@@ -170,14 +178,18 @@ export function parseInput(raw: RawInput | null | undefined): ParsedInput {
       break;
     case "tweetReplies":
     case "tweetRetweeters":
+    case "tweetQuotes":
+    case "tweetThread":
       targets = collect(stringList(input.tweetIds, "tweetIds"), parseTweetId, "tweetId", invalid);
       need = "at least one tweet ID or tweet URL in tweetIds";
       break;
     case "listTweets":
+    case "listMembers":
       targets = collect(stringList(input.listIds, "listIds"), (s) => parseIdFromUrl(s, "lists"), "listId", invalid);
       need = "at least one list ID or list URL in listIds";
       break;
     case "communityTweets":
+    case "communityMembers":
       targets = collect(
         stringList(input.communityIds, "communityIds"),
         (s) => parseIdFromUrl(s, "communities"),

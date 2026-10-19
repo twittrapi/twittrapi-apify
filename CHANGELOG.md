@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- New modes: quote tweets (`tweetQuotes`), tweet thread (`tweetThread`), affiliates of an
+  organization (`userAffiliates`), verified followers (`verifiedFollowers`), list members
+  (`listMembers`) and community members (`communityMembers`).
+
 ## 0.1.0 (2026-10-10)
 
 First release.

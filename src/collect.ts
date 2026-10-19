@@ -69,6 +69,12 @@ function userTarget(t: Target): { userId: string } | { username: string } {
   throw new Error(`Expected a user target, got ${t.kind}`);
 }
 
+/** Path ID and query for user endpoints the SDK has no method for: a handle goes to /user/-1?username=. */
+function userPath(t: Target): { id: string; query: { username?: string } } {
+  const u = userTarget(t);
+  return "userId" in u ? { id: u.userId, query: {} } : { id: "-1", query: { username: u.username } };
+}
+
 type PageFn = (p: { cursor?: string; count?: number }) => Promise<unknown>;
 
 /** Builds the paginated API call for a mode and target. */
@@ -91,6 +97,19 @@ function pageMethod(client: TwittrAPI, input: ParsedInput, t: Target): PageFn {
       return (p) => client.lists.tweets({ listId: t.value, count, cursor: p.cursor });
     case "communityTweets":
       return (p) => client.communities.tweets({ communityId: t.value, count, cursor: p.cursor });
+    case "tweetQuotes":
+      return (p) => client.tweets.quotes({ tweetId: t.value, count, cursor: p.cursor });
+    case "verifiedFollowers":
+      return (p) => client.users.verifiedFollowers({ ...userTarget(t), count, cursor: p.cursor });
+    case "listMembers":
+      return (p) => client.lists.members({ listId: t.value, count, cursor: p.cursor });
+    // No SDK method yet: plain GET through the client (same auth, retries and errors).
+    case "userAffiliates": {
+      const { id, query } = userPath(t);
+      return (p) => client.get({ path: `/user/${id}/affiliates`, query: { ...query, count, cursor: p.cursor } });
+    }
+    case "communityMembers":
+      return (p) => client.get({ path: `/communities/${t.value}/members`, query: { count, cursor: p.cursor } });
     default:
       throw new Error(`Mode ${input.mode} is not paginated`);
   }
@@ -105,6 +124,10 @@ export function expectedType(input: Pick<ParsedInput, "mode" | "searchCategory">
     case "following":
     case "tweetRetweeters":
     case "userProfiles":
+    case "verifiedFollowers":
+    case "userAffiliates":
+    case "listMembers":
+    case "communityMembers":
       return "user";
     default:
       return "tweet";
@@ -171,6 +194,7 @@ class Collector {
     const { mode, targets } = this.input;
     try {
       if (mode === "userProfiles") await this.#profiles(targets);
+      else if (mode === "tweetThread") for (const t of targets) await this.#guard(t, (res) => this.#thread(t, res));
       else if (mode === "trends") for (const t of targets) await this.#guard(t, (res) => this.#trends(t, res));
       else for (const t of targets) await this.#guard(t, (res) => this.#paginated(t, res));
     } catch (err) {
@@ -239,6 +263,20 @@ class Collector {
       if (page.nextCursor?.startsWith("0|")) break;
       emptyPages = fresh === 0 ? emptyPages + 1 : 0;
       if (emptyPages >= 2) break; // X keeps sending cursors but no new results
+    }
+  }
+
+  /** The author's thread around a tweet, in reading order. One request, no pagination. */
+  async #thread(t: Target, res: TargetResult): Promise<void> {
+    const data = await this.client.get({ path: `/tweet/${t.value}/thread` });
+    res.pages = 1;
+    const seen = new Set<string>();
+    for (const item of flattenTimeline(data, this.#opts)) {
+      if (res.items >= this.input.maxItems) break;
+      if (item.type !== "tweet" || seen.has(item.id)) continue;
+      seen.add(item.id);
+      await this.#emit(item, res.target);
+      res.items++;
     }
   }
 

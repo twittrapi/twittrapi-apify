@@ -15,7 +15,7 @@
     "views": {
         "tweets": {
             "title": "Tweets",
-            "description": "Tweets from search, user timelines, replies, lists and communities.",
+            "description": "Tweets from search, user timelines, replies, threads, quotes, lists and communities.",
             "transformation": {
                 "fields": [
                     "url",
@@ -59,7 +59,7 @@
         },
         "users": {
             "title": "Users",
-            "description": "Profiles, followers, following, retweeters and People search.",
+            "description": "Profiles, followers, following, affiliates, retweeters, list and community members and People search.",
             "transformation": {
                 "fields": [
                     "profile_image",

@@ -1,0 +1,42 @@
+{
+  "data": {
+    "communityResults": {
+      "result": {
+        "__typename": "Community",
+        "members_slice": {
+          "items_results": [
+            {
+              "result": {
+                "__typename": "User",
+                "rest_id": "5001",
+                "community_role": "Admin",
+                "core": {
+                  "screen_name": "member_admin",
+                  "name": "Member Admin"
+                },
+                "legacy": {
+                  "followers_count": 10
+                }
+              }
+            },
+            {
+              "result": {
+                "__typename": "User",
+                "rest_id": "5002",
+                "community_role": "Member",
+                "core": {
+                  "screen_name": "member_one",
+                  "name": "Member One"
+                },
+                "legacy": {
+                  "followers_count": 20
+                }
+              }
+            }
+          ],
+          "slice_info": {}
+        }
+      }
+    }
+  }
+}

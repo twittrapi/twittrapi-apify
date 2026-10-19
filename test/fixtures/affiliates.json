@@ -1,0 +1,72 @@
+{
+  "data": {
+    "user": {
+      "result": {
+        "__typename": "User",
+        "timeline": {
+          "timeline": {
+            "instructions": [
+              {
+                "type": "TimelineAddEntries",
+                "entries": [
+                  {
+                    "entryId": "user-4001",
+                    "content": {
+                      "entryType": "TimelineTimelineItem",
+                      "itemContent": {
+                        "itemType": "TimelineUser",
+                        "user_results": {
+                          "result": {
+                            "__typename": "User",
+                            "rest_id": "4001",
+                            "core": {
+                              "screen_name": "example_support",
+                              "name": "Example Support"
+                            },
+                            "legacy": {
+                              "followers_count": 1200
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "entryId": "user-4002",
+                    "content": {
+                      "entryType": "TimelineTimelineItem",
+                      "itemContent": {
+                        "itemType": "TimelineUser",
+                        "user_results": {
+                          "result": {
+                            "__typename": "User",
+                            "rest_id": "4002",
+                            "core": {
+                              "screen_name": "example_engineering",
+                              "name": "Example Engineering"
+                            },
+                            "legacy": {
+                              "followers_count": 800
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "entryId": "cursor-bottom-1",
+                    "content": {
+                      "entryType": "TimelineTimelineCursor",
+                      "value": "AFFILIATES_PAGE_2",
+                      "cursorType": "Bottom"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

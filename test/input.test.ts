@@ -41,6 +41,24 @@ test("user modes combine usernames and userIds, dedupe case-insensitively", () =
   ]);
 });
 
+test("new modes read the matching field", () => {
+  const tweet = "https://x.com/jack/status/20";
+  assert.deepEqual(parseInput({ mode: "tweetQuotes", tweetIds: [tweet] }).targets, [{ kind: "tweetId", value: "20" }]);
+  assert.deepEqual(parseInput({ mode: "tweetThread", tweetIds: [tweet] }).targets, [{ kind: "tweetId", value: "20" }]);
+  for (const mode of ["userAffiliates", "verifiedFollowers"]) {
+    assert.deepEqual(parseInput({ mode, usernames: ["@jack"], userIds: ["12"] }).targets, [
+      { kind: "username", value: "jack" },
+      { kind: "userId", value: "12" },
+    ]);
+  }
+  assert.deepEqual(parseInput({ mode: "listMembers", listIds: ["https://x.com/i/lists/123"] }).targets, [{ kind: "listId", value: "123" }]);
+  assert.deepEqual(parseInput({ mode: "communityMembers", communityIds: ["https://x.com/i/communities/456"] }).targets, [
+    { kind: "communityId", value: "456" },
+  ]);
+  assert.throws(() => parseInput({ mode: "tweetThread", usernames: ["jack"] }), /needs at least one tweet ID/);
+  assert.throws(() => parseInput({ mode: "communityMembers", listIds: ["1"] }), /needs at least one community ID/);
+});
+
 test("trends default to worldwide", () => {
   assert.deepEqual(parseInput({ mode: "trends" }).targets, [{ kind: "woeid", value: "1" }]);
 });

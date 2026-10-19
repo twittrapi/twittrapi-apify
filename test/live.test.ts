@@ -41,7 +41,13 @@ test("live: tweetsAndReplies, media, list, community, search and quotes yield tw
 });
 
 test("live: follower lists read legacy.screen_name users", () => {
-  for (const name of ["user-userid-followers", "user-userid-followings", "lists-members", "tweet-tweetid-retweets"]) {
+  for (const name of [
+    "user-userid-followers",
+    "user-userid-followings",
+    "user-userid-verifiedfollowers",
+    "lists-members",
+    "tweet-tweetid-retweets",
+  ]) {
     const list = users(live(name));
     assert.ok(list.length >= 2, name);
     for (const u of list) assert.ok(u.id && u.username && u.followers !== null && u.profile_image, `${name}: ${u.id}`);
@@ -197,4 +203,58 @@ test("live collect: user tweets by username go to /user/-1 with the handle and a
   assert.equal(s.calls[0]!.searchParams.get("username"), "XDevelopers");
   assert.equal(s.calls[0]!.searchParams.get("count"), "100");
   assert.deepEqual(s.items.map((i) => i.type), ["tweet"]);
+});
+
+test("live: community members come from members_slice.items_results", () => {
+  const list = flattenTimeline(live("communities-communityid-members"));
+  assert.deepEqual(list.map((u) => [u.type, u.id]), [
+    ["user", "1000000000000000001"],
+    ["user", "1000000000000000002"],
+  ]);
+  const [admin] = list as UserItem[];
+  assert.equal(admin!.username, "example_user_1");
+  assert.equal(admin!.verified, true);
+  assert.ok(admin!.profile_image?.startsWith("https://pbs.twimg.com/"));
+});
+
+test("live collect: quotes, verified followers, list members and community members", async () => {
+  const q = setup({ "/tweet/2019881223666233717/quotes": { body: live("tweet-tweetid-quotes") } }, {
+    mode: "tweetQuotes",
+    tweetIds: ["https://x.com/XDevelopers/status/2019881223666233717"],
+    maxPages: 1,
+  });
+  await q.run();
+  assert.ok(q.items.length > 0);
+  assert.ok(q.items.every((i) => i.type === "tweet" && (i as TweetItem).quoted_tweet?.id === "2019881223666233717"));
+
+  const v = setup({ "/user/-1/verifiedFollowers": { body: live("user-userid-verifiedfollowers") } }, {
+    mode: "verifiedFollowers",
+    usernames: ["XDevelopers"],
+    maxPages: 1,
+  });
+  await v.run();
+  assert.equal(v.calls[0]!.searchParams.get("username"), "XDevelopers");
+  assert.deepEqual(v.items.map((i) => (i as UserItem).username), ["example_user_1", "example_user_2"]);
+
+  const l = setup({ "/lists/members": { body: live("lists-members") } }, { mode: "listMembers", listIds: ["https://x.com/i/lists/84839422"], maxPages: 1 });
+  await l.run();
+  assert.equal(l.calls[0]!.searchParams.get("listId"), "84839422");
+  assert.ok(l.items.length >= 2 && l.items.every((i) => i.type === "user"));
+
+  const page1 = live("communities-communityid-members");
+  const next = page1.data.communityResults.result.members_slice.slice_info.next_cursor as string;
+  const lastPage = { data: { communityResults: { result: { __typename: "Community", members_slice: { items_results: [], slice_info: {} } } } } };
+  const c = setup(
+    {
+      "/communities/1762494276565426592/members": { body: page1 },
+      [`/communities/1762494276565426592/members?cursor=${next}`]: { body: lastPage },
+    },
+    { mode: "communityMembers", communityIds: ["https://x.com/i/communities/1762494276565426592"] },
+  );
+  const summary = await c.run();
+  assert.equal(c.calls.length, 2, "follows slice_info.next_cursor, then stops");
+  assert.equal(c.calls[1]!.searchParams.get("cursor"), next);
+  assert.deepEqual(c.items.map((i) => (i as UserItem).username), ["example_user_1", "example_user_2"]);
+  assert.ok(c.items.every((i) => i.mode === "communityMembers" && i.input === "1762494276565426592"));
+  assert.equal(summary.targets[0]!.items, 2);
 });

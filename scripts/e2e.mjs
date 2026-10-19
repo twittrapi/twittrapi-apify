@@ -20,6 +20,12 @@ const SCENARIOS = [
   { name: "retweeters", input: { mode: "tweetRetweeters", tweetIds: ["1844000000000000001"] }, expectItems: 2, expectExit: 0 },
   { name: "list", input: { mode: "listTweets", listIds: ["https://x.com/i/lists/123"] }, expectItems: 1, expectExit: 0 },
   { name: "community", input: { mode: "communityTweets", communityIds: ["456"] }, expectItems: 1, expectExit: 0 },
+  { name: "quotes", input: { mode: "tweetQuotes", tweetIds: ["1844000000000000001"] }, expectItems: 2, expectExit: 0 },
+  { name: "thread", input: { mode: "tweetThread", tweetIds: ["https://x.com/ada_example/status/1844000000000000102"] }, expectItems: 3, expectExit: 0 },
+  { name: "verified-followers", input: { mode: "verifiedFollowers", usernames: ["ada_example"] }, expectItems: 3, expectExit: 0 },
+  { name: "affiliates", input: { mode: "userAffiliates", userIds: ["783214"] }, expectItems: 3, expectExit: 0 },
+  { name: "list-members", input: { mode: "listMembers", listIds: ["123"], maxPages: 1 }, expectItems: 2, expectExit: 0 },
+  { name: "community-members", input: { mode: "communityMembers", communityIds: ["https://x.com/i/communities/456"] }, expectItems: 2, expectExit: 0 },
   { name: "trends", input: { mode: "trends", woeids: ["1", "23424977"] }, expectItems: 4, expectExit: 0 },
   // 402 after one good user: run ends early with a status message, items kept, exit 0.
   { name: "balance-402", input: { mode: "userTweets", usernames: ["ada_example", "broke", "never_reached"], maxItems: 2 }, expectItems: 2, expectExit: 0, expectStatus: /no balance left/ },

@@ -96,6 +96,52 @@ test("userProfiles: usernames one by one, IDs in batches", async () => {
   assert.match(s.warnings[0] ?? "", /2003/);
 });
 
+test("tweetThread: one request, the author's tweets in reading order, capped by maxItems", async () => {
+  const s = setup({ "/tweet/1844000000000000102/thread": { body: fixture("tweet_thread.json") } }, { mode: "tweetThread", tweetIds: ["https://x.com/ada_example/status/1844000000000000102"] });
+  const summary = await s.run();
+  assert.deepEqual(s.items.map(id), ["1844000000000000101", "1844000000000000102", "1844000000000000103"]);
+  assert.ok(s.items.every((i) => i.type === "tweet" && i.input === "1844000000000000102" && i.mode === "tweetThread"));
+  assert.equal(s.calls.length, 1);
+  assert.equal(s.calls[0]!.searchParams.get("cursor"), null);
+  assert.deepEqual(summary.targets, [{ target: "1844000000000000102", items: 3, pages: 1 }]);
+
+  const capped = setup({ "/tweet/1844000000000000102/thread": { body: fixture("tweet_thread.json") } }, { mode: "tweetThread", tweetIds: ["1844000000000000102"], maxItems: 2 });
+  await capped.run();
+  assert.deepEqual(capped.items.map(id), ["1844000000000000101", "1844000000000000102"]);
+});
+
+test("userAffiliates: a username goes through /user/-1/affiliates and follows the cursor", async () => {
+  const s = setup(
+    {
+      "/user/-1/affiliates": { body: fixture("affiliates.json") },
+      "/user/-1/affiliates?cursor=AFFILIATES_PAGE_2": { body: fixture("followers_page2.json") },
+      "/user/783214/affiliates": { body: fixture("affiliates.json") },
+    },
+    { mode: "userAffiliates", usernames: ["@ExampleOrg"], userIds: ["783214"], maxPages: 1 },
+  );
+  await s.run();
+  assert.equal(s.calls[0]!.searchParams.get("username"), "ExampleOrg");
+  assert.equal(s.calls[0]!.searchParams.get("count"), "100");
+  assert.equal(s.calls[1]!.searchParams.get("username"), null);
+  assert.deepEqual(s.items.map((i) => [i.type === "user" ? i.username : "", i.input]), [
+    ["example_support", "@ExampleOrg"],
+    ["example_engineering", "@ExampleOrg"],
+    ["example_support", "783214"],
+    ["example_engineering", "783214"],
+  ]);
+
+  const paged = setup(
+    {
+      "/user/-1/affiliates": { body: fixture("affiliates.json") },
+      "/user/-1/affiliates?cursor=AFFILIATES_PAGE_2": { body: fixture("followers_page2.json") },
+    },
+    { mode: "userAffiliates", usernames: ["ExampleOrg"] },
+  );
+  await paged.run();
+  assert.equal(paged.calls.length, 2, "stops on the 0| bottom cursor");
+  assert.deepEqual(paged.items.map(id), ["4001", "4002", "2005"]);
+});
+
 test("trends respect maxItems per location", async () => {
   const s = setup({ "/trends/1": { body: fixture("trends_v1.json") }, "/trends/23424977": { body: fixture("trends_graphql.json") } }, { mode: "trends", woeids: ["1", "23424977"], maxItems: 1 });
   await s.run();

@@ -7,7 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Apify Actor for [TwittrAPI](https://twittrapi.com), a REST API for public Twitter/X data: read tweets,
-search results, profiles, followers, replies, retweeters, list and community tweets and trends, and get
+search results, profiles, followers, replies, threads, retweeters, quote tweets, list and community
+tweets and members, affiliates and trends, and get
 them as clean JSON, CSV or Excel. No X account, login, cookies or proxies. Not affiliated with X Corp.
 
 > **Get an API key:** [twittrapi.com/start](https://twittrapi.com/start?utm_source=github&utm_medium=readme&utm_campaign=twittrapi-apify) · [Pricing](https://twittrapi.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=twittrapi-apify) · [Docs](https://twittrapi.com/docs?utm_source=github&utm_medium=readme&utm_campaign=twittrapi-apify) · [Status](https://twittrapi.com/status) · also available on [RapidAPI](https://rapidapi.com/viperscores-viperscores-default/api/twitter-aio)
@@ -34,7 +35,8 @@ TWITTRAPI_API_KEY=your-key npx apify-cli@1.10.0 run
 ```
 
 Results land in `storage/datasets/default/`. Other modes: `searchTweets`, `userTweets`, `followers`,
-`following`, `tweetReplies`, `tweetRetweeters`, `listTweets`, `communityTweets`, `trends`.
+`verifiedFollowers`, `following`, `userAffiliates`, `tweetReplies`, `tweetThread`, `tweetRetweeters`,
+`tweetQuotes`, `listTweets`, `listMembers`, `communityTweets`, `communityMembers`, `trends`.
 
 ## Support
 

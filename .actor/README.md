@@ -12,11 +12,17 @@ This Actor gets its data from [TwittrAPI](https://twittrapi.com/?utm_source=apif
 | User tweets | Usernames or user IDs | Tweets from the profile timeline, including the pinned tweet and retweets |
 | User profiles | Usernames or user IDs | One profile per user |
 | Followers of a user | Usernames or user IDs | Accounts that follow the user |
+| Verified followers of a user | Usernames or user IDs | Followers with a verified badge |
 | Accounts a user follows | Usernames or user IDs | Accounts the user follows |
+| Affiliates of an organization | Usernames or user IDs | Accounts in the Affiliates tab of the profile |
 | Tweet replies | Tweet IDs or URLs | Replies in the tweet's conversation |
+| Tweet thread | Tweet IDs or URLs | The author's own thread around the tweet, in reading order |
 | Tweet retweeters | Tweet IDs or URLs | Accounts that retweeted the tweet |
+| Quote tweets | Tweet IDs or URLs | Tweets that quote the tweet |
 | List tweets | List IDs or URLs | Tweets from an X list |
+| List members | List IDs or URLs | Accounts that are members of an X list |
 | Community tweets | Community IDs or URLs | Tweets posted in an X Community |
+| Community members | Community IDs or URLs | Members of an X Community |
 | Trends by location | WOEIDs (1 = worldwide) | Trending topics with rank and volume |
 
 ## How to use it
@@ -80,6 +86,15 @@ Get replies to a tweet:
   "mode": "tweetReplies",
   "tweetIds": ["https://x.com/nasa/status/1844000000000000001"],
   "maxItems": 500
+}
+```
+
+Get a whole thread from one of its tweets:
+
+```json
+{
+  "mode": "tweetThread",
+  "tweetIds": ["https://x.com/nasa/status/1844000000000000001"]
 }
 ```
 
